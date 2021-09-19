@@ -3,16 +3,6 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 
-const HomePage = ({ data: offers }) => {
-  return (
-    <Head>
-      <div>Mini Just Join IT</div>
-      {offers.map((offer) => (
-        <p key={offer.id}>{offer.title}</p>
-      ))}
-    </Head>
-  )
-}
 
 export async function getStaticProps() {
   const { offers } = await axios.get('https://test.justjoin.it/offers');
@@ -24,7 +14,6 @@ export async function getStaticProps() {
   }
 }
 
-//export default HomePage;
 
 export default function Home( {data:offers}) {
   return (
