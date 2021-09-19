@@ -3,9 +3,9 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 
-
 export async function getStaticProps() {
-  const { offers } = await axios.get('https://test.justjoin.it/offers');
+  const res = await axios.get('https://test.justjoin.it/offers');
+  const offers = res.data
   return {
     props: {
       offers,
@@ -14,8 +14,7 @@ export async function getStaticProps() {
   }
 }
 
-
-export default function Home( {data:offers}) {
+export default function Home( {offers}) {
   return (
     <div className={styles.container}>
       <Head>
