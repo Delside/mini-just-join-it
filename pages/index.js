@@ -1,4 +1,3 @@
-import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import Offer from '../components/offers/Offer';
@@ -6,8 +5,11 @@ import NavigationBar from '../components/navbar/NavigationBar';
 import Offers from '../components/offers/Offers';
 
 export async function getStaticProps() {
-  const res = await axios.get('https://test.justjoin.it/offers');
-  const offers = res.data
+
+  const res = await fetch('https://test.justjoin.it/offers')
+  const offers = await res.json()
+
+
   return {
     props: {
       offers: offers.map(offer => ({
@@ -32,6 +34,7 @@ function Home(props) {
   <Container>
     <NavigationBar /> 
     <Offers offers={props.offers}/>
+
   </Container>
   );
 }
